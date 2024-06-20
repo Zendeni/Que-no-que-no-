@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Que no, que no!</title>
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('font.ttf') format('truetype');
+        }
+
+        body {
+            font-family: 'CustomFont', Arial, sans-serif;
+            display: grid;
+            grid-template-areas:
+                "countdown countdown"
+                ". ."
+                "start end"
+                ". footer";
+            grid-template-rows: 1fr auto auto auto;
+            grid-template-columns: 1fr 1fr;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000;
+        }
+
+        #countdown {
+            grid-area: countdown;
+            text-align: center;
+            font-size: 5em;
+            color: #148602;
+            align-self: center;
+        }
+
+        #start {
+            grid-area: start;
+            font-size: 5em;
+            color: #148602;
+            padding: 20px;
+            align-self: end;
+        }
+
+        #end {
+            grid-area: end;
+            font-size: 5em;
+            color: #148602;
+            padding: 20px;
+            align-self: end;
+            justify-self: end;
+        }
+
+        footer {
+            grid-area: footer;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1em;
+            color: #148602;
+            padding: 10px;
+            text-align: center;
+            align-self: end;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="countdown"></div>
+
+    <script>
+        // Set the date we're counting down to
+        const countDownDate = new Date("June 20, 2026 00:00:00").getTime();
+
+        // Update the countdown every 1 second
+        const countdownFunction = setInterval(function () {
+            // Get today's date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the countdown date
+            const distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="countdown"
+            document.getElementById("countdown").innerHTML =
+                days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // If the countdown is over, display some text
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+    <div id="start">
+        <p>6/20/2024</p>
+    </div>
+    <div id="end">
+        <p>6/20/2026</p>
+    </div>
+    <footer>
+        <p>#wiThLoVefRoMErIkTOsIlViAfoRgOOdandbADaLwaYsandFOReVeRtoGetHEr</p>
+    </footer>
+</body>
+
+</html>
